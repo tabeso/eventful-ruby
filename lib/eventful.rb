@@ -1,5 +1,15 @@
-require "eventful/version"
+require 'eventful/version'
 
 module Eventful
-  # Your code goes here...
+  ENDPOINT = 'http://api.eventful.com/rest/'
+  
+  class << self
+    attr_accessor :api_key
+    
+  end
+  
 end
+
+require 'eventful/request'
+require 'eventful/response'
+require 'eventful/event'

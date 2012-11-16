@@ -17,6 +17,8 @@ Gem::Specification.new do |gem|
   
   gem.add_dependency 'faraday', '< 0.9.0'
   gem.add_dependency 'faraday_middleware', '0.9.0'
+  gem.add_dependency 'nokogiri', '~> 1.5.5'
+  gem.add_dependency 'multi_xml', '~> 0.5'  
   
   gem.add_development_dependency 'rspec'
   gem.add_development_dependency 'vcr'
