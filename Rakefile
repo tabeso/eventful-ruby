@@ -1,16 +1,30 @@
 #!/usr/bin/env rake
-require "bundler/gem_tasks"
+require 'rubygems'
+require 'bundler'
+begin
+  Bundler.setup(:default, :development)
+rescue Bundler::BundlerError => e
+  $stderr.puts e.message
+  $stderr.puts "Run `bundle install` to install missing gems"
+  exit e.status_code
+end
 require 'rake'
-require 'rspec/core/rake_task'
+require 'bundler/gem_tasks'
 
-namespace :spec do
-  RSpec::Core::RakeTask.new(:normal) do |t|
-    t.pattern ='spec/**/*_spec.rb'
-    t.rcov = false
-  end
+require 'rspec/core'
+require 'rspec/core/rake_task'
+RSpec::Core::RakeTask.new(:spec) do |spec|
+  spec.pattern = FileList['spec/**/*_spec.rb']
 end
 
-desc 'RSpec tests'
-task 'spec' => 'spec:normal'
+task :default => :spec
 
-task 'default' => 'spec'
+require 'yard'
+YARD::Rake::YardocTask.new
+
+desc 'Start Pry with all runtime dependencies loaded'
+task :console, :script do |t, args|
+  command  = 'bundle exec pry'
+  command += "-r #{args[:script]}" if args[:script]
+  sh command
+end

@@ -8,6 +8,11 @@ rescue Bundler::BundlerError => e
   exit e.status_code
 end
 
+unless ENV['CI']
+  require 'simplecov'
+  SimpleCov.start
+end
+
 require 'rspec/autorun'
 require 'webmock/rspec'
 
@@ -15,7 +20,21 @@ $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 $LOAD_PATH.unshift(File.dirname(__FILE__))
 require 'eventful-ruby'
 
-Eventful.api_key = YAML.load_file(File.join(File.dirname(__FILE__), 'config.yml'))['api_key']
+require 'pathname'
+config_file = Pathname.new(File.join(File.dirname(__FILE__), 'config.yml'))
+if config_file.exist?
+  Eventful.api_key = YAML.load_file(config_file.to_s)['api_key']
+else
+  abort "Please setup a spec/config.yml file"
+end
+
+RSpec.configure do |config|
+  # Run specs in random order to surface order dependencies. If you find an
+  # order dependency and want to debug it, you can fix the order by providing
+  # the seed, which is printed after each run.
+  #     --seed 1234
+  config.order = 'random'
+end
 
 # Requires supporting files with custom matchers and macros, etc,
 # in ./support/ and its subdirectories.
