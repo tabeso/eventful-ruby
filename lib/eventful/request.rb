@@ -24,6 +24,7 @@ module Eventful
     # @param [Hash] options
     # @return [Faraday::Response]
     def get(path = nil, options = {})
+      options[:app_key] ||= Eventful.api_key
       connection.get(path, options)
     end
 

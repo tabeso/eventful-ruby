@@ -12,4 +12,5 @@ end
 
 require 'eventful/request'
 require 'eventful/response'
+require 'eventful/client'
 require 'eventful/event'
