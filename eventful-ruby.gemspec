@@ -19,6 +19,7 @@ Gem::Specification.new do |gem|
   gem.add_dependency 'faraday_middleware', '0.9.0'
   gem.add_dependency 'nokogiri', '~> 1.5.5'
   gem.add_dependency 'multi_xml', '~> 0.5'
+  gem.add_dependency 'hashie', '~> 1.2.0'
 
   # Basic
   gem.add_development_dependency 'rake'
