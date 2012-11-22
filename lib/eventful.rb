@@ -1,4 +1,5 @@
 require 'eventful/version'
+require 'eventful/exceptions'
 
 module Eventful
   ENDPOINT = 'http://api.eventful.com/rest/'

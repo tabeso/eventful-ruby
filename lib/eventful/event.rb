@@ -71,7 +71,7 @@ module Eventful
         if options[:date].respond_to?(:strftime)
           options[:date] = options[:date].strftime('%Y%m%d00')
         elsif options[:date].respond_to?(:first) && options[:date].respond_to?(:last)
-          options[:date] = "#{date.first.strftime('%Y%m%d00')}-#{date.last.strftime('%Y%m%d00')}"
+          options[:date] = "#{options[:date].first.strftime('%Y%m%d00')}-#{options[:date].last.strftime('%Y%m%d00')}"
         end
 
         if options[:include].respond_to?(:collect)
@@ -85,6 +85,13 @@ module Eventful
         end
 
         respond_with events, response
+      end
+      
+      def find(id, options={})
+        options.merge!(id: id)
+        response = get('events/get', options)
+        event = allocate.init_with(response.body['event'])
+        respond_with event, response, with_errors: true
       end
 
     end

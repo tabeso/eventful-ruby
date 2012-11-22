@@ -23,5 +23,26 @@ describe Eventful::Event do
       end
     end
   end
+  
+  describe '.find' do
+    use_vcr_cassette 'events/find/existing'
+    
+    let(:event_id) { 'E0-001-000278174-6' }
+    subject(:event) { Eventful::Event.find(event_id) }
+    
+    it { should be_kind_of(Eventful::Event) }
+    it { should be_success }
+    
+    its(:title) { should_not be_nil }
+    
+    context 'a non-existent event' do
+      use_vcr_cassette 'events/find/non_existing'
+
+      it 'raises a NotFoundError' do
+        expect { Eventful::Event.find('teehee') }.to raise_error(Eventful::NotFoundError)
+      end
+    end
+    
+  end
 
 end

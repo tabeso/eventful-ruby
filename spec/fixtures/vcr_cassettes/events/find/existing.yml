@@ -1,0 +1,576 @@
+--- 
+http_interactions: 
+- request: 
+    method: get
+    uri: http://api.eventful.com/rest/events/get?app_key=<API_KEY>&id=E0-001-000278174-6
+    body: 
+      encoding: US-ASCII
+      string: ""
+    headers: 
+      Accept: 
+      - text/xml, application/xml; charset=utf-8
+      User-Agent: 
+      - <USER_AGENT>
+      Accept-Encoding: 
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Content-Type: 
+      - text/xml; charset=utf-8
+      Content-Length: 
+      - "14532"
+      Date: 
+      - Thu, 22 Nov 2012 03:48:10 GMT
+      Server: 
+      - lighttpd/1.4.28
+    body: 
+      encoding: US-ASCII
+      string: |-
+        <?xml version="1.0" encoding="UTF-8"?>
+        
+        <event id="E0-001-000278174-6">
+          <url>http://eventful.com/westchester_oh/events/martini-tasting-/E0-001-000278174-6?utm_source=apis&amp;utm_medium=apim&amp;utm_campaign=apic</url>
+          <title>Martini Tasting</title>
+          <description>Sample drinks made with featured vodkas.</description>
+          <start_time>2005-08-24 12:00:00</start_time>
+          <stop_time></stop_time>
+          <all_day>0</all_day>
+          <tz_id></tz_id>
+          <tz_olson_path></tz_olson_path>
+          <tz_country></tz_country>
+          <tz_city></tz_city>
+          <venue_name>Encore Cafe - West Chester</venue_name>
+          <venue_id>V0-001-000108360-1</venue_id>
+          <venue_type></venue_type>
+          <venue_display>1</venue_display>
+          <address></address>
+          <city>West Chester</city>
+          <region>Ohio</region>
+          <region_abbr>OH</region_abbr>
+          <postal_code>45069</postal_code>
+          <country>United States</country>
+          <country_abbr2>US</country_abbr2>
+          <country_abbr>USA</country_abbr>
+          <latitude>39.3360595703125</latitude>
+          <longitude>-84.4053573608398</longitude>
+          <geocode_type>Zip Code Based GeoCodes</geocode_type>
+          <created>2005-07-28 13:09:09</created>
+          <modified>2009-07-06 04:06:29</modified>
+          <owner>evdb</owner>
+          <privacy>1</privacy>
+          <free></free>
+          <price></price>
+          <withdrawn>0</withdrawn>
+          <withdrawn_note></withdrawn_note>
+          <recurrence></recurrence>
+          <parents></parents>
+          <children></children>
+          <links>
+            <link id="312146">
+              <url>http://frontier.cincinnati.com/calendar/proddisplay.asp?prodid=28356</url>
+              <type>Official Site</type>
+              <description>Details</description>
+              <username>evdb</username>
+              <time>2005-07-28 13:09:09</time>
+            </link>
+            <link id="8271086">
+              <url>http://www.weblo.com</url>
+              <type>Blog</type>
+              <description></description>
+              <username>Irfan</username>
+              <time>2007-05-22 00:54:53</time>
+            </link>
+            <link id="8270969">
+              <url>http://www.weblo.com</url>
+              <type>Blog</type>
+              <description></description>
+              <username>Irfan</username>
+              <time>2007-05-22 00:52:20</time>
+            </link>
+            <link id="33399387">
+              <url>http://foo.com</url>
+              <type>Info</type>
+              <description>More Info&lt;img alt="some" src="http://img385.imageshack.us/img385/8363/fillerbu1.jpg"&gt;</description>
+              <username>edepotinc</username>
+              <time>2008-11-26 17:07:34</time>
+            </link>
+          </links>
+          <comments>
+            <comment id="111944">
+              <text>This comment has been modified</text>
+              <username>dipalisikand</username>
+              <time>2012-09-13 00:54:03</time>
+            </comment>
+            <comment id="97133">
+              <text>That sounds like fun!</text>
+              <username>bialguos</username>
+              <time>2011-06-22 10:22:04</time>
+            </comment>
+            <comment id="97041">
+              <text>That sounds like fun!</text>
+              <username>bialguos</username>
+              <time>2011-06-20 04:05:29</time>
+            </comment>
+            <comment id="97040">
+              <text>That sounds like fun!</text>
+              <username>bialguos</username>
+              <time>2011-06-20 04:05:14</time>
+            </comment>
+            <comment id="82709">
+              <text>This is for test</text>
+              <username>gfeder1</username>
+              <time>2010-09-16 01:27:41</time>
+            </comment>
+            <comment id="82708">
+              <text>This is for test</text>
+              <username>gfeder1</username>
+              <time>2010-09-16 01:04:15</time>
+            </comment>
+            <comment id="75653">
+              <text>Thats great. am gonna be there</text>
+              <username>imedia1</username>
+              <time>2010-05-18 10:46:40</time>
+            </comment>
+            <comment id="75652">
+              <text>Thats+great.+am+gonna+be+there</text>
+              <username>imedia1</username>
+              <time>2010-05-18 10:45:56</time>
+            </comment>
+            <comment id="52285">
+              <text>Hello</text>
+              <username>bala_1225</username>
+              <time>2009-07-06 04:06:29</time>
+            </comment>
+            <comment id="52283">
+              <text>Hello</text>
+              <username>bala_1225</username>
+              <time>2009-07-06 02:21:23</time>
+            </comment>
+          </comments>
+          <trackbacks></trackbacks>
+          <performers>
+            <performer>
+              <id>P0-001-000000567-9</id>
+              <url>http://eventful.com/performers/wil-wheaton-/P0-001-000000567-9?utm_source=apis&amp;utm_medium=apim&amp;utm_campaign=apic</url>
+              <name>Wil Wheaton</name>
+              <short_bio>Author, Blogger, Actor</short_bio>
+              <creator>wilwheaton</creator>
+              <linker>dipalisikand</linker>
+            </performer>
+            <performer>
+              <id>P0-001-000007820-4</id>
+              <url>http://eventful.com/performers/michgan-/P0-001-000007820-4?utm_source=apis&amp;utm_medium=apim&amp;utm_campaign=apic</url>
+              <name>MICH!GAN</name>
+              <short_bio> Hardcore / Punk / Metal</short_bio>
+              <creator>misscat</creator>
+              <linker>prabhukal</linker>
+            </performer>
+          </performers>
+          <images>
+            <image>
+              <id>I0-001-004199897-4</id>
+              <creator>sur4dye</creator>
+              <url>http://s2.evcdn.com/images/small/I0-001/004/199/897-4.jpeg_/wil-wheaton-97.jpeg</url>
+              <width>48</width>
+              <height>48</height>
+              <thumb>
+                <url>http://s2.evcdn.com/images/thumb/I0-001/004/199/897-4.jpeg_/wil-wheaton-97.jpeg</url>
+                <width>48</width>
+                <height>48</height>
+              </thumb>
+              <small>
+                <url>http://s2.evcdn.com/images/small/I0-001/004/199/897-4.jpeg_/wil-wheaton-97.jpeg</url>
+                <width>48</width>
+                <height>48</height>
+              </small>
+              <medium>
+                <url>http://s2.evcdn.com/images/medium/I0-001/004/199/897-4.jpeg_/wil-wheaton-97.jpeg</url>
+                <width>128</width>
+                <height>128</height>
+              </medium>
+            </image>
+            <image>
+              <id>I0-001-001280477-2</id>
+              <creator>wilwheaton</creator>
+              <url>http://s2.evcdn.com/images/small/I0-001/001/280/477-2.jpeg_/wil-wheaton-77.jpeg</url>
+              <width>48</width>
+              <height>48</height>
+              <thumb>
+                <url>http://s2.evcdn.com/images/thumb/I0-001/001/280/477-2.jpeg_/wil-wheaton-77.jpeg</url>
+                <width>48</width>
+                <height>48</height>
+              </thumb>
+              <small>
+                <url>http://s2.evcdn.com/images/small/I0-001/001/280/477-2.jpeg_/wil-wheaton-77.jpeg</url>
+                <width>48</width>
+                <height>48</height>
+              </small>
+              <medium>
+                <url>http://s2.evcdn.com/images/medium/I0-001/001/280/477-2.jpeg_/wil-wheaton-77.jpeg</url>
+                <width>128</width>
+                <height>128</height>
+              </medium>
+            </image>
+            <image>
+              <id>I0-001-001280479-0</id>
+              <creator>wilwheaton</creator>
+              <url>http://s4.evcdn.com/images/small/I0-001/001/280/479-0.png_/wil-wheaton-79.png</url>
+              <width>48</width>
+              <height>48</height>
+              <thumb>
+                <url>http://s4.evcdn.com/images/thumb/I0-001/001/280/479-0.png_/wil-wheaton-79.png</url>
+                <width>48</width>
+                <height>48</height>
+              </thumb>
+              <small>
+                <url>http://s4.evcdn.com/images/small/I0-001/001/280/479-0.png_/wil-wheaton-79.png</url>
+                <width>48</width>
+                <height>48</height>
+              </small>
+              <medium>
+                <url>http://s4.evcdn.com/images/medium/I0-001/001/280/479-0.png_/wil-wheaton-79.png</url>
+                <width>128</width>
+                <height>128</height>
+              </medium>
+            </image>
+            <image>
+              <id>I0-001-000873762-2</id>
+              <creator>wilwheaton</creator>
+              <url>http://s3.evcdn.com/images/small/I0-001/000/873/762-2.jpeg_/wil-wheaton-62.jpeg</url>
+              <width>48</width>
+              <height>48</height>
+              <thumb>
+                <url>http://s3.evcdn.com/images/thumb/I0-001/000/873/762-2.jpeg_/wil-wheaton-62.jpeg</url>
+                <width>48</width>
+                <height>48</height>
+              </thumb>
+              <small>
+                <url>http://s3.evcdn.com/images/small/I0-001/000/873/762-2.jpeg_/wil-wheaton-62.jpeg</url>
+                <width>48</width>
+                <height>48</height>
+              </small>
+              <medium>
+                <url>http://s3.evcdn.com/images/medium/I0-001/000/873/762-2.jpeg_/wil-wheaton-62.jpeg</url>
+                <width>128</width>
+                <height>128</height>
+              </medium>
+            </image>
+            <image>
+              <id>I0-001-000431032-0</id>
+              <creator>wilwheaton</creator>
+              <url>http://s1.evcdn.com/images/small/I0-001/000/431/032-0.jpg_/wil-wheaton-32.jpg</url>
+              <width>48</width>
+              <height>48</height>
+              <thumb>
+                <url>http://s1.evcdn.com/images/thumb/I0-001/000/431/032-0.jpg_/wil-wheaton-32.jpg</url>
+                <width>48</width>
+                <height>48</height>
+              </thumb>
+              <small>
+                <url>http://s1.evcdn.com/images/small/I0-001/000/431/032-0.jpg_/wil-wheaton-32.jpg</url>
+                <width>48</width>
+                <height>48</height>
+              </small>
+              <medium>
+                <url>http://s1.evcdn.com/images/medium/I0-001/000/431/032-0.jpg_/wil-wheaton-32.jpg</url>
+                <width>128</width>
+                <height>128</height>
+              </medium>
+            </image>
+            <image>
+              <id>I0-001-000431029-6</id>
+              <creator>wilwheaton</creator>
+              <url>http://s2.evcdn.com/images/small/I0-001/000/431/029-6.jpg_/wil-wheaton-29.jpg</url>
+              <width>48</width>
+              <height>48</height>
+              <thumb>
+                <url>http://s2.evcdn.com/images/thumb/I0-001/000/431/029-6.jpg_/wil-wheaton-29.jpg</url>
+                <width>48</width>
+                <height>48</height>
+              </thumb>
+              <small>
+                <url>http://s2.evcdn.com/images/small/I0-001/000/431/029-6.jpg_/wil-wheaton-29.jpg</url>
+                <width>48</width>
+                <height>48</height>
+              </small>
+              <medium>
+                <url>http://s2.evcdn.com/images/medium/I0-001/000/431/029-6.jpg_/wil-wheaton-29.jpg</url>
+                <width>128</width>
+                <height>128</height>
+              </medium>
+            </image>
+            <image>
+              <id>I0-001-000070464-6</id>
+              <creator>chris_radcliff</creator>
+              <url>http://s1.evcdn.com/images/small/I0-001/000/070/464-6.jpeg_/wil-wheaton-64.jpeg</url>
+              <width>48</width>
+              <height>48</height>
+              <thumb>
+                <url>http://s1.evcdn.com/images/thumb/I0-001/000/070/464-6.jpeg_/wil-wheaton-64.jpeg</url>
+                <width>48</width>
+                <height>48</height>
+              </thumb>
+              <small>
+                <url>http://s1.evcdn.com/images/small/I0-001/000/070/464-6.jpeg_/wil-wheaton-64.jpeg</url>
+                <width>48</width>
+                <height>48</height>
+              </small>
+              <medium>
+                <url>http://s1.evcdn.com/images/medium/I0-001/000/070/464-6.jpeg_/wil-wheaton-64.jpeg</url>
+                <width>128</width>
+                <height>128</height>
+              </medium>
+            </image>
+            <image>
+              <id>I0-001-000193866-6</id>
+              <creator>misscat</creator>
+              <url>http://s3.evcdn.com/images/small/I0-001/000/193/866-6.jpg_/michgan-66.jpg</url>
+              <width>48</width>
+              <height>48</height>
+              <thumb>
+                <url>http://s3.evcdn.com/images/thumb/I0-001/000/193/866-6.jpg_/michgan-66.jpg</url>
+                <width>48</width>
+                <height>48</height>
+              </thumb>
+              <small>
+                <url>http://s3.evcdn.com/images/small/I0-001/000/193/866-6.jpg_/michgan-66.jpg</url>
+                <width>48</width>
+                <height>48</height>
+              </small>
+              <medium>
+                <url>http://s3.evcdn.com/images/medium/I0-001/000/193/866-6.jpg_/michgan-66.jpg</url>
+                <width>128</width>
+                <height>128</height>
+              </medium>
+            </image>
+            <image>
+              <id>I0-001-000153337-3</id>
+              <creator>ladielauryn</creator>
+              <url>http://s2.evcdn.com/images/small/I0-001/000/153/337-3.jpg_/michgan-37.jpg</url>
+              <width>48</width>
+              <height>48</height>
+              <thumb>
+                <url>http://s2.evcdn.com/images/thumb/I0-001/000/153/337-3.jpg_/michgan-37.jpg</url>
+                <width>48</width>
+                <height>48</height>
+              </thumb>
+              <small>
+                <url>http://s2.evcdn.com/images/small/I0-001/000/153/337-3.jpg_/michgan-37.jpg</url>
+                <width>48</width>
+                <height>48</height>
+              </small>
+              <medium>
+                <url>http://s2.evcdn.com/images/medium/I0-001/000/153/337-3.jpg_/michgan-37.jpg</url>
+                <width>128</width>
+                <height>128</height>
+              </medium>
+            </image>
+          </images>
+          <tags>
+            <tag id="actor">
+              <title>actor</title>
+              <owner>evdb</owner>
+            </tag>
+            <tag id="author">
+              <title>author</title>
+              <owner>evdb</owner>
+            </tag>
+            <tag id="blogger">
+              <title>blogger</title>
+              <owner>evdb</owner>
+            </tag>
+            <tag id="city">
+              <title>CITY</title>
+              <owner>evdb</owner>
+            </tag>
+            <tag id="concert">
+              <title>concert</title>
+              <owner>evdb</owner>
+            </tag>
+            <tag id="concerts">
+              <title>concerts</title>
+              <owner>evdb</owner>
+            </tag>
+            <tag id="dining">
+              <title>Dining</title>
+              <owner></owner>
+            </tag>
+            <tag id="gamer">
+              <title>gamer</title>
+              <owner>evdb</owner>
+            </tag>
+            <tag id="geek">
+              <title>geek</title>
+              <owner>evdb</owner>
+            </tag>
+            <tag id="hardcore">
+              <title>hardcore</title>
+              <owner>evdb</owner>
+            </tag>
+            <tag id="hawesome">
+              <title>hawesome</title>
+              <owner>evdb</owner>
+            </tag>
+            <tag id="interesting">
+              <title>Interesting</title>
+              <owner>evdb</owner>
+            </tag>
+            <tag id="lake">
+              <title>LAKE</title>
+              <owner>evdb</owner>
+            </tag>
+            <tag id="literary">
+              <title>literary</title>
+              <owner>evdb</owner>
+            </tag>
+            <tag id="metal">
+              <title>metal</title>
+              <owner>evdb</owner>
+            </tag>
+            <tag id="music">
+              <title>music</title>
+              <owner>evdb</owner>
+            </tag>
+            <tag id="pokerstars">
+              <title>Poker Stars</title>
+              <owner>evdb</owner>
+            </tag>
+            <tag id="pop">
+              <title>pop</title>
+              <owner>evdb</owner>
+            </tag>
+            <tag id="punk">
+              <title>punk</title>
+              <owner>evdb</owner>
+            </tag>
+            <tag id="salt">
+              <title>SALT</title>
+              <owner>evdb</owner>
+            </tag>
+            <tag id="startrek">
+              <title>Star Trek</title>
+              <owner>evdb</owner>
+            </tag>
+            <tag id="teentitan">
+              <title>Teen Titan</title>
+              <owner>evdb</owner>
+            </tag>
+            <tag id="wil">
+              <title>wil</title>
+              <owner>evdb</owner>
+            </tag>
+            <tag id="wilwheaton">
+              <title>wilwheaton</title>
+              <owner>evdb</owner>
+            </tag>
+            <tag id="writer">
+              <title>writer</title>
+              <owner>evdb</owner>
+            </tag>
+            <tag id="wwdn">
+              <title>wwdn</title>
+              <owner>evdb</owner>
+            </tag>
+          </tags>
+          <calendars></calendars>
+          <groups></groups>
+          <going></going>
+          <properties>
+            <property>
+              <id>2866786</id>
+              <name>do_not_promote</name>
+              <value>1</value>
+            </property>
+            <property>
+              <id>2866787</id>
+              <name>Rating</name>
+              <value>5 Stars</value>
+            </property>
+          </properties>
+          <categories>
+            <category>
+              <id>music</id>
+              <name>Concerts &amp;amp; Tour Dates</name>
+            </category>
+          </categories>
+        </event>
+    http_version: 
+  recorded_at: Thu, 22 Nov 2012 03:48:10 GMT
+- request: 
+    method: get
+    uri: http://api.eventful.com/rest/events/get?app_key=<API_KEY>&id=TEE%20HEE
+    body: 
+      encoding: US-ASCII
+      string: ""
+    headers: 
+      Accept: 
+      - text/xml, application/xml; charset=utf-8
+      User-Agent: 
+      - <USER_AGENT>
+      Accept-Encoding: 
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Content-Type: 
+      - text/xml; charset=utf-8
+      Content-Length: 
+      - "154"
+      Date: 
+      - Thu, 22 Nov 2012 03:48:10 GMT
+      Server: 
+      - lighttpd/1.4.28
+    body: 
+      encoding: US-ASCII
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        
+        <error string="Not found">
+          <description>There is no event with the identifier 'TEE HEE'.</description>
+        </error>
+
+    http_version: 
+  recorded_at: Thu, 22 Nov 2012 03:48:10 GMT
+- request: 
+    method: get
+    uri: http://api.eventful.com/rest/events/get?app_key=<API_KEY>&id=teehee
+    body: 
+      encoding: US-ASCII
+      string: ""
+    headers: 
+      Accept: 
+      - text/xml, application/xml; charset=utf-8
+      User-Agent: 
+      - <USER_AGENT>
+      Accept-Encoding: 
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Content-Type: 
+      - text/xml; charset=utf-8
+      Content-Length: 
+      - "153"
+      Date: 
+      - Thu, 22 Nov 2012 03:54:14 GMT
+      Server: 
+      - lighttpd/1.4.28
+    body: 
+      encoding: US-ASCII
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        
+        <error string="Not found">
+          <description>There is no event with the identifier 'teehee'.</description>
+        </error>
+
+    http_version: 
+  recorded_at: Thu, 22 Nov 2012 03:54:14 GMT
+recorded_with: VCR 2.3.0

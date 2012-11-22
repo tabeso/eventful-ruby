@@ -90,12 +90,25 @@ module Eventful
     # Returns the provided object and attaches the response, additionally
     # specifying whether the request returned a successful response.
     def respond_with(object, response = nil, options = {}, &block)
+      detect_and_raise_error(response.body) if options[:with_errors]
+      
       object.tap do |o|
         o.extend(Response)
-        o.raw_response = response
-        o.success      = options.has_key?(:success) ? options[:success] : true
+        o.raw_response = response                                         # because they always return 200 >_<
+        o.success      = options.has_key?(:success) ? options[:success] : response.body.has_key?('error')
         yield(o) if block_given?
       end
+    end
+    
+    def detect_and_raise_error(body)
+      return false unless body['error']
+
+      klass = case body['error']['string']
+      when /Not Found/i then NotFoundError
+      else ArgumentError
+      end
+      
+      raise klass, body['error']['description']
     end
   end
 end
