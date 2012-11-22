@@ -80,7 +80,7 @@ module Eventful
 
         response = get('events/search', options)
 
-        events = response.body['events']['event'].map do |event_data|
+        events = response.body['search']['events']['event'].map do |event_data|
           instantiate(event_data)
         end
 
@@ -90,7 +90,7 @@ module Eventful
       def find(id, options={})
         options.merge!(id: id)
         response = get('events/get', options)
-        event = instantiate(response.body)
+        event = instantiate(response.body['event'])
         respond_with event, response, with_errors: true
       end
 
