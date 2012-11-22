@@ -6,7 +6,7 @@ module Eventful
   module Request
     FARADAY_OPTIONS = {
       :headers => {
-        'Accept' => 'text/xml, application/xml; charset=utf-8',
+        'Accept' => 'application/json, text/javascript; charset=utf-8',
         'User-Agent' => -> { 'eventful-ruby/%s (Rubygems; Ruby %s %s)' % [Eventful::VERSION, RUBY_VERSION, RUBY_PLATFORM] }.call
       },
       :url => ::Eventful::ENDPOINT,
@@ -67,7 +67,7 @@ module Eventful
     # @return [Faraday::Connection]
     def connection
       @connection ||= Faraday::Connection.new(FARADAY_OPTIONS) do |c|
-        c.response :xml, :content_type => /\bxml$/
+        c.response :json, content_type: /\bjson|javascript$/
         c.adapter(Faraday.default_adapter)
       end
     end
@@ -101,14 +101,14 @@ module Eventful
     end
 
     def detect_and_raise_error(body)
-      return false unless body['error']
+      return false unless body.keys == ['string', 'description']
 
-      klass = case body['error']['string']
+      klass = case body['string']
       when /Not Found/i then NotFoundError
       else ArgumentError
       end
 
-      raise klass, body['error']['description']
+      raise klass, body['description']
     end
   end
 end

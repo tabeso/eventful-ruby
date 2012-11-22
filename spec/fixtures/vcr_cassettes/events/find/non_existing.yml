@@ -1,0 +1,36 @@
+--- 
+http_interactions: 
+- request: 
+    method: get
+    uri: http://api.eventful.com/json/events/get?app_key=<API_KEY>&id=teehee
+    body: 
+      encoding: US-ASCII
+      string: ""
+    headers: 
+      Accept: 
+      - application/json, text/javascript; charset=utf-8
+      User-Agent: 
+      - <USER_AGENT>
+      Accept-Encoding: 
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Content-Type: 
+      - text/javascript; charset=utf-8
+      Content-Length: 
+      - "87"
+      Date: 
+      - Thu, 22 Nov 2012 15:10:01 GMT
+      Server: 
+      - lighttpd/1.4.28
+    body: 
+      encoding: US-ASCII
+      string: |
+        {"string":"Not found","description":"There is no event with the identifier 'teehee'."}
+
+    http_version: 
+  recorded_at: Thu, 22 Nov 2012 15:10:01 GMT
+recorded_with: VCR 2.3.0

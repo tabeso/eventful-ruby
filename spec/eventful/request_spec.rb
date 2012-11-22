@@ -7,7 +7,7 @@ describe Eventful::Request do
     end
   end
 
-  let(:url) { %r{^http://api.eventful.com/rest} }
+  let(:url) { %r{^http://api.eventful.com/} }
 
   let(:client) { http.new }
 
@@ -71,7 +71,7 @@ describe Eventful::Request do
 
   context '#connection' do
     it 'accepts XML responses' do
-      Faraday::Connection.should_receive(:new).with(hash_including(:headers => hash_including('Accept' => 'text/xml, application/xml; charset=utf-8')))
+      Faraday::Connection.should_receive(:new).with(hash_including(:headers => hash_including('Accept' => 'application/json, text/javascript; charset=utf-8')))
       subject.connection
     end
 

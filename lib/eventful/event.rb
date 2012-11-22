@@ -80,17 +80,17 @@ module Eventful
 
         response = get('events/search', options)
 
-        events = response.body['search']['events']['event'].map do |event_data|
-          allocate.init_with(event_data)
+        events = response.body['events']['event'].map do |event_data|
+          instantiate(event_data)
         end
 
         respond_with events, response
       end
-      
+
       def find(id, options={})
         options.merge!(id: id)
         response = get('events/get', options)
-        event = allocate.init_with(response.body['event'])
+        event = instantiate(response.body)
         respond_with event, response, with_errors: true
       end
 

@@ -1,8 +1,10 @@
+require 'active_support/core_ext'
+
 require 'eventful/version'
 require 'eventful/exceptions'
 
 module Eventful
-  ENDPOINT = 'http://api.eventful.com/rest/'
+  ENDPOINT = 'http://api.eventful.com/json/'
 
   class << self
     attr_accessor :api_key
