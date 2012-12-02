@@ -18,7 +18,9 @@ require 'eventful-ruby'
 
 config_file = Pathname.new(Pathname.getwd.join('spec/config.yml'))
 if config_file.exist?
-  Eventful.api_key = YAML.load_file(config_file.to_s)['api_key']
+  config = YAML.load_file(config_file.to_s)
+  Eventful.api_key = config['api_key']
+  Eventful.feed_key = config['feed_key']
 else
   abort "Please setup a spec/config.yml file"
 end

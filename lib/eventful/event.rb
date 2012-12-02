@@ -1,6 +1,7 @@
 module Eventful
 
-  class Event < Resource
+  class Event
+    include Resource
 
     class << self
 
@@ -92,6 +93,14 @@ module Eventful
         response = get('events/get', options)
         event = instantiate(response.body['event'])
         respond_with event, response, with_errors: true
+      end
+
+      def all(date = nil)
+        feed_for(:events, :full, date)
+      end
+
+      def updates(date = nil)
+        feed_for(:events, :updates, date)
       end
 
     end

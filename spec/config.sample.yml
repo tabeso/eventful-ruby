@@ -1,2 +1,4 @@
 # You can find your Eventful app key by visiting http://api.eventful.com/
 api_key: "changeme"
+# See http://api.eventful.com/tools/feeds
+feed_key: "changeme"

@@ -1,11 +1,15 @@
 require 'hashie'
 
 module Eventful
-  class Resource
-    extend Request
-    include Request
+  module Resource
+    extend ActiveSupport::Concern
 
-    attr_reader :attributes
+    included do
+      extend Request
+      include Request
+
+      attr_reader :attributes
+    end
 
     ##
     # Instantiates a new Resource, setting the provided attributes, if given.
@@ -21,60 +25,68 @@ module Eventful
       @new_record = true
     end
 
-    ##
-    # Instantiates a new object when loaded from an API response.
-    #
-    # @params [Hash] attrs
-    #   The hash of attributes to instantiate with.
-    #
-    # @return [Resource]
-    #   A new resource.
-    def self.instantiate(attrs = nil)
-      attributes = initialize_attributes(attrs)
+    module ClassMethods
+      ##
+      # Instantiates a new object when loaded from an API response.
+      #
+      # @params [Hash] attrs
+      #   The hash of attributes to instantiate with.
+      #
+      # @return [Resource]
+      #   A new resource.
+      def instantiate(attrs = nil)
+        attributes = initialize_attributes(attrs)
 
-      resource = allocate
-      resource.instance_variable_set(:@attributes, attributes)
-      resource
-    end
+        resource = allocate
+        resource.instance_variable_set(:@attributes, attributes)
+        resource
+      end
 
-    ##
-    # Deserializes a hash of attributes and returns them as a `Hashie::Mash`.
-    #
-    # @param [Hash] attrs
-    #   The attributes to prepare.
-    #
-    # @return [Hashie::Mash]
-    #   The intialized attributes.
-    def self.initialize_attributes(attrs = nil)
-      attributes = deserialize_attributes(attrs || {})
-      Hashie::Mash.new(attributes)
-    end
+      protected
 
-    ##
-    # Override to provide custom serialization. Useful for undoing previously
-    # deserialized attributes (see {.deserialize_attributes} when sending
-    # changes back to the API.
-    #
-    # @param [Hashie::Mash] attrs
-    #   The attributes to serialize.
-    #
-    # @return [Hash]
-    #   The serailzed attributes.
-    def self.serialize_attributes(attrs = {})
-      attrs
-    end
+      ##
+      # Deserializes a hash of attributes and returns them as a `Hashie::Mash`.
+      #
+      # @param [Hash] attrs
+      #   The attributes to prepare.
+      #
+      # @return [Hashie::Mash]
+      #   The intialized attributes.
+      def initialize_attributes(attrs = nil)
+        attributes = deserialize_attributes(attrs || {})
+        Hashie::Mash.new(attributes)
+      end
 
-    ##
-    # Override to provide custom deserialization. Useful for typecasting
-    # results and maintaining sanity.
-    #
-    # @param [Hashie::Mash] attrs
-    #   The attributes to deserialize.
-    #
-    # @return [Hash]
-    #   The deserialized attributes.
-    def self.deserialize_attributes(attrs = {})
-      attrs
+      ##
+      # Override to provide custom serialization. Useful for undoing previously
+      # deserialized attributes (see {.deserialize_attributes} when sending
+      # changes back to the API.
+      #
+      # @param [Hashie::Mash] attrs
+      #   The attributes to serialize.
+      #
+      # @return [Hash]
+      #   The serailzed attributes.
+      def serialize_attributes(attrs = {})
+        attrs
+      end
+
+      ##
+      # Override to provide custom deserialization. Useful for typecasting
+      # results and maintaining sanity.
+      #
+      # @param [Hashie::Mash] attrs
+      #   The attributes to deserialize.
+      #
+      # @return [Hash]
+      #   The deserialized attributes.
+      def deserialize_attributes(attrs = {})
+        attrs
+      end
+
+      def feed_for(resource, limit = :updates, date = nil)
+        Eventful::Feed::Request.new(resource, limit, date)
+      end
     end
 
     def to_eventful

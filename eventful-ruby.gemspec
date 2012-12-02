@@ -22,6 +22,9 @@ Gem::Specification.new do |gem|
   gem.add_dependency 'multi_xml', '~> 0.5'
   gem.add_dependency 'hashie', '~> 1.2.0'
 
+  # Feed streaming
+  gem.add_dependency 'em-http-request', '~> 1.0'
+
   # Basic
   gem.add_development_dependency 'rake'
   gem.add_development_dependency 'bundler'

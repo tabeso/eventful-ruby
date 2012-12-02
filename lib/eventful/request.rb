@@ -9,7 +9,7 @@ module Eventful
         'Accept' => 'text/xml, application/xml; charset=utf-8',
         'User-Agent' => -> { 'eventful-ruby/%s (Rubygems; Ruby %s %s)' % [Eventful::VERSION, RUBY_VERSION, RUBY_PLATFORM] }.call
       },
-      :url => ::Eventful::ENDPOINT,
+      :url => ::Eventful::API_ENDPOINT,
       :request => {
         :timeout => 5,
         :open_timeout => 5
@@ -95,7 +95,7 @@ module Eventful
       object.tap do |o|
         o.extend(Response)
         o.raw_response = response                                         # because they always return 200 >_<
-        o.success      = options.has_key?(:success) ? options[:success] : !response.body.has_key?('error')
+        o.success = options.has_key?(:success) ? options[:success] : !response.body.has_key?('error')
         yield(o) if block_given?
       end
     end
