@@ -88,7 +88,7 @@ module Eventful
         respond_with events, response
       end
 
-      def find(id, options={})
+      def find(id, options= {})
         options.merge!(id: id)
         response = get('events/get', options)
         event = instantiate(response.body['event'])
