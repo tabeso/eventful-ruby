@@ -1,5 +1,7 @@
 module Eventful
-  
-  class NotFoundError < StandardError; end
-  
+
+  class APIError < StandardError; end
+
+  class NotFoundError < APIError; end
+
 end
