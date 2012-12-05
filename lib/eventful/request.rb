@@ -104,11 +104,13 @@ module Eventful
       return false unless body['error']
 
       klass = case body['error']['string']
-      when /Not Found/i then NotFoundError
-      else ArgumentError
+      when /Not found/i then NotFoundError
+      when /Access denied/i then PermissionsError
+      else
+        APIError
       end
 
-      raise klass, body['error']['description']
+      raise klass, "#{body['error']['string']} - #{body['error']['description']}"
     end
   end
 end

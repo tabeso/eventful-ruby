@@ -4,4 +4,6 @@ module Eventful
 
   class NotFoundError < APIError; end
 
+  class PermissionsError < APIError; end
+
 end
