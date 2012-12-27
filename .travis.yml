@@ -4,6 +4,8 @@ rvm:
   - jruby-19mode
   - rbx-19mode
   - 2.0.0
+before_script:
+  - cp spec/config.sample.yml spec/config.yml
 branches:
   only:
     - master
