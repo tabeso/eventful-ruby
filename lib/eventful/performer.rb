@@ -14,7 +14,7 @@ module Eventful
       options.merge!(id: id)
       response = get('performers/get', options)
       performer = instantiate(response.body['performer'])
-      respond_with performer, response, with_errors: true
+      respond_with performer, response
     end
   end
 end
