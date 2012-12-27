@@ -2,6 +2,7 @@ require 'active_support/core_ext'
 require 'active_support/inflector'
 require 'active_support/time_with_zone'
 
+
 require 'eventful/version'
 require 'eventful/exceptions'
 require 'eventful/config'
@@ -20,6 +21,7 @@ module Eventful
   delegate(*Config.public_instance_methods(false), to: :config)
 end
 
+require 'eventful/middleware'
 require 'eventful/request'
 require 'eventful/response'
 require 'eventful/resource'

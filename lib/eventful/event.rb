@@ -92,7 +92,7 @@ module Eventful
         options.merge!(id: id)
         response = get('events/get', options)
         event = instantiate(response.body['event'])
-        respond_with event, response, with_errors: true
+        respond_with event, response
       end
 
       def all(date = nil)

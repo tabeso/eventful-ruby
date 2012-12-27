@@ -26,6 +26,7 @@ module Eventful
             open_timeout: Eventful.http_open_timeout,
             timeout: Eventful.http_read_timeout
           }
+          conn.response :raise_eventful_error
           conn.response :xml, content_type: /\bxml$/
           conn.adapter(Eventful.faraday_adapter)
         end
@@ -80,26 +81,12 @@ module Eventful
       # Returns the provided object and attaches the response, additionally
       # specifying whether the request returned a successful response.
       def respond_with(object, response = nil, options = {}, &block)
-        detect_and_raise_error(response.body) if options[:with_errors]
-
         object.tap do |o|
           o.extend(Response)
           o.raw_response = response                                    # because they always return 200 >_<
           o.success = options.has_key?(:success) ? options[:success] : !response.body.has_key?('error')
           yield(o) if block_given?
         end
-      end
-
-      def detect_and_raise_error(body)
-        return false unless body['error']
-
-        klass = case body['error']['string']
-        when /Not found/i     then NotFoundError
-        when /Access denied/i then PermissionsError
-        else                       APIError
-        end
-
-        raise klass, "#{body['error']['string']} - #{body['error']['description']}"
       end
 
       ##

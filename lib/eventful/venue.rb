@@ -14,7 +14,7 @@ module Eventful
       options.merge!(id: id)
       response = get('venues/get', options)
       venue = instantiate(response.body['venue'])
-      respond_with venue, response, with_errors: true
+      respond_with venue, response
     end
   end
 end
