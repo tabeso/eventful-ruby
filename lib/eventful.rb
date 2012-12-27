@@ -4,15 +4,20 @@ require 'active_support/time_with_zone'
 
 require 'eventful/version'
 require 'eventful/exceptions'
+require 'eventful/config'
 
 module Eventful
-  API_ENDPOINT = 'http://api.eventful.com/rest/'
-  FEED_ENDPOINT = 'http://static.eventful.com/images/export/'
+  extend self
 
-  class << self
-    attr_accessor :api_key
-    attr_accessor :feed_key
+  def configure
+    block_given? ? yield(config) : config
   end
+
+  def config
+    @config ||= Config.new
+  end
+
+  delegate(*Config.public_instance_methods(false), to: :config)
 end
 
 require 'eventful/request'

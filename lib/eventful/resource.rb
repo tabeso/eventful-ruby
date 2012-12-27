@@ -5,9 +5,7 @@ module Eventful
     extend ActiveSupport::Concern
 
     included do
-      extend Request
       include Request
-
       attr_reader :attributes
     end
 

@@ -74,7 +74,7 @@ module Eventful
           end
         end
 
-        "#{Eventful::FEED_ENDPOINT}#{Eventful.feed_key}-#{date.strftime('%Y%m%d')}-#{limit.to_s}-#{resource.to_s}.xml.gz"
+        "#{Eventful.feed_endpoint}#{Eventful.feed_key}-#{date.strftime('%Y%m%d')}-#{limit.to_s}-#{resource.to_s}.xml.gz"
       end
     end
   end

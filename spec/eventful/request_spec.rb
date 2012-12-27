@@ -1,24 +1,34 @@
 require 'spec_helper'
 
 describe Eventful::Request do
+
   let(:http) do
     Class.new do
       include Eventful::Request
     end
   end
 
-  let(:url) { %r{^http://api.eventful.com/} }
+  let(:url) do
+    %r{^http://api.eventful.com/}
+  end
 
-  let(:client) { http.new }
+  let(:client) do
+    http.new
+  end
 
-  subject { client }
+  subject do
+    client
+  end
 
   after(:each) do
     WebMock.reset!
   end
 
   context '#get' do
-    subject { client.get }
+
+    subject do
+      client.get
+    end
 
     before(:each) do
       WebMock.stub_request(:any, /.*/)
@@ -31,7 +41,10 @@ describe Eventful::Request do
   end
 
   context '#post' do
-    subject { client.post(nil, 'something') }
+
+    subject do
+      client.post(nil, 'something')
+    end
 
     before(:each) do
       WebMock.stub_request(:any, url)
@@ -39,12 +52,15 @@ describe Eventful::Request do
 
     it 'executes a POST request with the given data' do
       subject
-      WebMock.should have_requested(:post, url).with(:body => 'something')
+      WebMock.should have_requested(:post, url).with(body: 'something')
     end
   end
 
   context '#put' do
-    subject { client.put(nil, 'something') }
+
+    subject do
+      client.put(nil, 'something')
+    end
 
     before(:each) do
       WebMock.stub_request(:any, url)
@@ -52,12 +68,15 @@ describe Eventful::Request do
 
     it 'executes a PUT request with the given data' do
       subject
-      WebMock.should have_requested(:put, url).with(:body => 'something')
+      WebMock.should have_requested(:put, url).with(body: 'something')
     end
   end
 
   context '#delete' do
-    subject { client.delete }
+
+    subject do
+      client.delete
+    end
 
     before(:each) do
       WebMock.stub_request(:any, url)
@@ -70,20 +89,20 @@ describe Eventful::Request do
   end
 
   context '#connection' do
+
     it 'accepts XML responses' do
-      Faraday::Connection.should_receive(:new).with(hash_including(:headers => hash_including('Accept' => 'text/xml, application/xml; charset=utf-8')))
-      subject.connection
+      subject.connection.headers[:accept].should eq('text/xml, application/xml')
     end
 
     it 'sets the user agent' do
-      Faraday::Connection.should_receive(:new).with(hash_including(:headers => hash_including('User-Agent' => subject.user_agent)))
-      subject.connection
+      subject.connection.headers[:user_agent].should eq(http.user_agent)
     end
   end
 
-  context '#user_agent' do
+  context '.user_agent' do
+
     it 'returns a user agent containing the release, Ruby, and platform versions' do
-      subject.user_agent.should =~ %r{^eventful-ruby/[0-9\.]+ \(Rubygems; Ruby [0-9\.]+ .+\)$}
+      http.user_agent.should =~ %r{^eventful-ruby/[0-9\.]+ \(Rubygems; Ruby [0-9\.]+ .+\)$}
     end
   end
 end
