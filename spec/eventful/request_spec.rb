@@ -30,13 +30,18 @@ describe Eventful::Request do
       client.get
     end
 
-    before(:each) do
-      WebMock.stub_request(:any, /.*/)
-    end
-
     it 'executes a GET request' do
+      WebMock.stub_request(:any, /.*/)
       subject
       WebMock.should have_requested(:get, url)
+    end
+
+    context 'when request times out' do
+
+      it 'raises a TimeoutError' do
+        WebMock.stub_request(:any, /.*/).to_timeout
+        expect { subject }.to raise_error(Eventful::TimeoutError)
+      end
     end
   end
 

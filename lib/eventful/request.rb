@@ -1,5 +1,3 @@
-require 'faraday_middleware'
-
 module Eventful
   ##
   # Used by {Client} to execute HTTP requests against APIs.
@@ -22,12 +20,17 @@ module Eventful
             accept: 'text/xml, application/xml',
             user_agent: user_agent
           }
+
           conn.options[:request] = {
             open_timeout: Eventful.http_open_timeout,
             timeout: Eventful.http_read_timeout
           }
+
           conn.response :raise_eventful_error
           conn.response :xml, content_type: /\bxml$/
+
+          conn.use :eventful_wrap_error
+
           conn.adapter(Eventful.faraday_adapter)
         end
       end
