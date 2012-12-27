@@ -10,7 +10,9 @@ end
 
 unless ENV['CI']
   require 'simplecov'
-  SimpleCov.start
+  SimpleCov.start do
+    add_filter '/spec/'
+  end
 end
 
 require 'rspec/autorun'
