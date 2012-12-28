@@ -10,6 +10,7 @@ VCR.configure do |config|
   config.filter_sensitive_data('<USER_AGENT>') do |interaction|
     interaction.request.headers['User-Agent'].first
   end
+
   config.default_cassette_options = {
     :serialize_with => :syck
   }

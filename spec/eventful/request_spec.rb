@@ -20,10 +20,6 @@ describe Eventful::Request do
     client
   end
 
-  after(:each) do
-    WebMock.reset!
-  end
-
   context '#get' do
 
     subject do
@@ -51,11 +47,8 @@ describe Eventful::Request do
       client.post(nil, 'something')
     end
 
-    before(:each) do
-      WebMock.stub_request(:any, url)
-    end
-
     it 'executes a POST request with the given data' do
+      WebMock.stub_request(:any, url)
       subject
       WebMock.should have_requested(:post, url).with(body: 'something')
     end
@@ -67,11 +60,8 @@ describe Eventful::Request do
       client.put(nil, 'something')
     end
 
-    before(:each) do
-      WebMock.stub_request(:any, url)
-    end
-
     it 'executes a PUT request with the given data' do
+      WebMock.stub_request(:any, url)
       subject
       WebMock.should have_requested(:put, url).with(body: 'something')
     end
@@ -83,11 +73,8 @@ describe Eventful::Request do
       client.delete
     end
 
-    before(:each) do
-      WebMock.stub_request(:any, url)
-    end
-
     it 'executes a DELETE request' do
+      WebMock.stub_request(:any, url)
       subject
       WebMock.should have_requested(:delete, url)
     end

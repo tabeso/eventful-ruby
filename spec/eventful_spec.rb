@@ -7,13 +7,14 @@ describe Eventful do
     context 'when a block is given' do
 
       before do
+        @original_key = Eventful.api_key
         Eventful.configure do |config|
           config.api_key = 'magic'
         end
       end
 
       after do
-        Eventful.config.reset!
+        Eventful.config.api_key = @original_key
       end
 
       it 'sets the values on the config instance' do
