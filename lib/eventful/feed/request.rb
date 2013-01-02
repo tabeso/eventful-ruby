@@ -35,27 +35,19 @@ module Eventful
         EventMachine.run do
           io_read, io_write = IO.pipe
 
-          # Normally, em-http does this for us however, these are static files
-          # instead of encoded responses.
-          decoder = EventMachine::HttpDecoders::GZip.new do |decompressed|
-            io_write << decompressed
-          end
-
           EventMachine.defer(proc {
-            parser = Nokogiri::XML::SAX::Parser.new(document)
-            parser.parse_io(io_read)
-          }, proc { EventMachine.stop })
+            document.parse(io_read).resources.each do |resource|
+              yield(resource)
+            end
+          }, proc {
+            io_write.close
+            EventMachine.stop
+          })
 
           http = EventMachine::HttpRequest.new(url).get
           http.stream do |chunk|
-            decoder << chunk
-            unless document.resources.empty?
-              resource = document.resources.pop
-              yield(resource)
-            end
+            io_write << chunk
           end
-
-          http.callback { io_write.close }
         end
       end
       alias :each :execute

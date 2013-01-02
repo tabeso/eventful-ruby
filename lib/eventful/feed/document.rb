@@ -1,3 +1,4 @@
+require 'fiber'
 require 'nokogiri'
 
 module Eventful
@@ -7,9 +8,21 @@ module Eventful
 
       attr_reader :resource_class
 
+      def self.open(path, resource)
+        new(resource).parse(File.open(path))
+      end
+
       def initialize(resource)
         @resource_name = resource.to_s.singularize
         @resource_class = "Eventful::#{resource_name.capitalize}".constantize
+      end
+
+      def parse(io)
+        @parser = Fiber.new do
+          require 'zlib'
+          Nokogiri::XML::SAX::Parser.new(self).parse(Zlib::GzipReader.new(io))
+        end
+        self
       end
 
       def start_element(name, attrs = [])
@@ -29,7 +42,7 @@ module Eventful
 
         if name == resource_name
           last = resource_stack.pop
-          resources << build_resource(last)
+          add_resource(last)
           resource_stack.clear
         elsif resource_stack.size > 1
           last = resource_stack.pop
@@ -45,8 +58,16 @@ module Eventful
         @resource_stack ||= []
       end
 
+      def add_resource(data)
+        Fiber.yield(build_resource(data))
+      end
+
       def resources
-        @resources ||= []
+        Enumerator.new do |objects|
+          while object = @parser.resume
+            objects << object
+          end
+        end
       end
 
       private
