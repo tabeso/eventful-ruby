@@ -33,7 +33,7 @@ module Eventful
       #     end
       def execute(&block)
         EventMachine.run do
-          io_read, io_write = IO.pipe
+          io_read, io_write = IO.pipe.collect(&:binmode)
 
           EventMachine.defer(proc {
             document.parse(io_read).resources.each do |resource|
