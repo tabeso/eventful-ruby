@@ -2,28 +2,28 @@
 require File.expand_path('../lib/eventful/version', __FILE__)
 
 Gem::Specification.new do |gem|
-  gem.authors       = ["Tabeso Team"]
-  gem.email         = ["dev@tabeso.com"]
-  gem.description   = "Interface with Eventful.com API"
-  gem.summary       = ""
-  gem.homepage      = "https://github.com/tabeso/eventful-ruby"
+  gem.authors       = ['Tabeso Team']
+  gem.email         = ['dev@tabeso.com']
+  gem.description   = 'Interface with Eventful.com API'
+  gem.summary       = ''
+  gem.homepage      = 'https://github.com/tabeso/eventful-ruby'
 
   gem.files         = `git ls-files`.split($\)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
-  gem.name          = "eventful-ruby"
-  gem.require_paths = ["lib"]
+  gem.name          = 'eventful-ruby'
+  gem.require_paths = ['lib']
   gem.version       = Eventful::VERSION
 
   gem.add_dependency 'activesupport', '~> 3.1'
-  gem.add_dependency 'faraday', '>= 0.8.0', '< 0.9.0'
-  gem.add_dependency 'faraday_middleware', '0.9.0'
-  gem.add_dependency 'nokogiri', '~> 1.5.5'
+  gem.add_dependency 'faraday', '~> 0.8'
+  gem.add_dependency 'faraday_middleware', '~> 0.9'
   gem.add_dependency 'multi_xml', '~> 0.5'
   gem.add_dependency 'hashie', '~> 1.2.0'
 
   # Feed streaming
   gem.add_dependency 'em-http-request', '~> 1.0'
+  gem.add_dependency 'ox', '~> 1.8'
 
   # Basic
   gem.add_development_dependency 'rake'
