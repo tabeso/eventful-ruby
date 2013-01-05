@@ -21,7 +21,7 @@ module Eventful
       end
 
       def text=(value)
-        @text = value.strip
+        @text = value.strip.force_encoding('UTF-8')
       end
 
       def children
