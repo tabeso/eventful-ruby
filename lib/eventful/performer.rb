@@ -2,12 +2,12 @@ module Eventful
   class Performer
     include Resource
 
-    def self.all(date = nil)
-      feed_for(:performers, :full, date)
+    def self.all(date = Date.yesterday)
+      feed(:full, date)
     end
 
-    def self.updates(date = nil)
-      feed_for(:performers, :updates, date)
+    def self.updates(date = Date.yesterday)
+      feed(:updates, date)
     end
 
     def self.find(id, options = {})

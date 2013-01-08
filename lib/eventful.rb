@@ -7,6 +7,7 @@ require 'eventful/version'
 require 'eventful/exceptions'
 require 'eventful/middleware'
 require 'eventful/config'
+require 'eventful/parser'
 
 module Eventful
   extend self
@@ -28,4 +29,5 @@ require 'eventful/resource'
 require 'eventful/event'
 require 'eventful/performer'
 require 'eventful/venue'
-require 'eventful/feeds'
+require 'eventful/image'
+require 'eventful/feed'

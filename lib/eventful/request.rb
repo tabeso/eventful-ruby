@@ -5,7 +5,6 @@ module Eventful
     extend ActiveSupport::Concern
 
     included do
-      # raise ClassMethods.public_instance_methods.inspect
       delegate(*ClassMethods.public_instance_methods, to: 'self.class')
     end
 
@@ -27,7 +26,7 @@ module Eventful
           }
 
           conn.response :raise_eventful_error
-          conn.response :xml, content_type: /\bxml$/
+          conn.response :eventful_parse_sax, resource: self
 
           conn.use :eventful_wrap_error
 
@@ -83,11 +82,11 @@ module Eventful
       ##
       # Returns the provided object and attaches the response, additionally
       # specifying whether the request returned a successful response.
-      def respond_with(object, response = nil, options = {}, &block)
+      def respond_with(object, options = {}, &block)
         object.tap do |o|
           o.extend(Response)
-          o.raw_response = response                                    # because they always return 200 >_<
-          o.success = options.has_key?(:success) ? options[:success] : !response.body.has_key?('error')
+          o.resource = options[:resource] || false
+          o.collection = options[:collection] || false
           yield(o) if block_given?
         end
       end
@@ -105,6 +104,6 @@ module Eventful
       def user_agent
         'eventful-ruby/%s (Rubygems; Ruby %s %s)' % [Eventful::VERSION, RUBY_VERSION, RUBY_PLATFORM]
       end
-    end
-  end
-end
+    end # ClassMethods
+  end # Request
+end # Eventful

@@ -10,7 +10,6 @@ describe Eventful::Event do
       subject { events }
 
       it 'returns an array of events' do
-        subject.should be_kind_of(Array)
         subject.first.should be_kind_of(Eventful::Event)
       end
 
@@ -19,7 +18,7 @@ describe Eventful::Event do
       context 'the first event' do
         subject { events.first }
 
-        its(:title) { should_not be_nil }
+        its(:name) { should_not be_nil }
       end
     end
   end
@@ -30,10 +29,9 @@ describe Eventful::Event do
     let(:event_id) { 'E0-001-000278174-6' }
     subject(:event) { Eventful::Event.find(event_id) }
 
-    it { should be_kind_of(Eventful::Event) }
     it { should be_success }
 
-    its(:title) { should_not be_nil }
+    its(:name) { should_not be_nil }
 
     context 'a non-existent event' do
       use_vcr_cassette 'events/find/non_existing'
@@ -45,15 +43,21 @@ describe Eventful::Event do
   end
 
   describe '.all' do
-    subject(:request) { Eventful::Event.all }
 
-    it { should be_kind_of(Eventful::Feed::Request) }
+    subject(:feed) do
+      described_class.all
+    end
+
+    it { should be_kind_of(Eventful::Feed) }
   end
 
   describe '.updates' do
-    subject(:request) { Eventful::Event.updates }
 
-    it { should be_kind_of(Eventful::Feed::Request) }
+    subject(:feed) do
+      described_class.updates
+    end
+
+    it { should be_kind_of(Eventful::Feed) }
   end
 
 end

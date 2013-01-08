@@ -3,15 +3,13 @@ require 'spec_helper'
 describe Eventful::Venue do
 
   describe '.find' do
-    use_vcr_cassette 'venues/find/existing'
+    # use_vcr_cassette 'venues/find/existing'
 
     # let(:event_id) { 'E0-001-000278174-6' }
     # subject(:event) { Eventful::Event.find(event_id) }
 
-    # it { should be_kind_of(Eventful::Event) }
     # it { should be_success }
-
-    # its(:title) { should_not be_nil }
+    # its(:name) { should_not be_nil }
 
     context 'an inaccessible venue' do
       use_vcr_cassette 'venues/find/inaccessible'
@@ -31,15 +29,21 @@ describe Eventful::Venue do
   end
 
   describe '.all' do
-    subject(:request) { Eventful::Event.all }
 
-    it { should be_kind_of(Eventful::Feed::Request) }
+    subject(:feed) do
+      described_class.all
+    end
+
+    it { should be_kind_of(Eventful::Feed) }
   end
 
   describe '.updates' do
-    subject(:request) { Eventful::Event.updates }
 
-    it { should be_kind_of(Eventful::Feed::Request) }
+    subject(:feed) do
+      described_class.updates
+    end
+
+    it { should be_kind_of(Eventful::Feed) }
   end
 
 end

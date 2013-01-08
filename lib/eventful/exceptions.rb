@@ -9,7 +9,7 @@ module Eventful
     def initialize(env_or_message = nil)
       if env_or_message.respond_to?(:each_key)
         @response = env_or_message
-        @message = "#{env_or_message[:body]['error']['string']} - #{env_or_message[:body]['error']['description']}"
+        @message = "#{env_or_message[:body][:error][:string]} - #{env_or_message[:body][:error][:description]}"
       else
         @message = env_or_message
       end

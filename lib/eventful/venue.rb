@@ -2,12 +2,12 @@ module Eventful
   class Venue
     include Resource
 
-    def self.all(date = nil)
-      feed_for(:venues, :full, date)
+    def self.all(date = Date.yesterday)
+      feed(:full, date)
     end
 
-    def self.updates(date = nil)
-      feed_for(:venues, :updates, date)
+    def self.updates(date = Date.yesterday)
+      feed(:updates, date)
     end
 
     def self.find(id, options = {})

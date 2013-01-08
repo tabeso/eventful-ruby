@@ -82,8 +82,8 @@ module Eventful
         attrs
       end
 
-      def feed_for(resource, limit = :updates, date = nil)
-        Eventful::Feed::Request.new(resource, limit, date)
+      def feed(limit = :updates, date = nil)
+        Eventful::Feed.new(self, limit, date)
       end
     end
 
