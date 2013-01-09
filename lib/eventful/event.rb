@@ -138,7 +138,9 @@ module Eventful
     def self.deserialize_images(attrs)
       return [] unless attrs[:images] || attrs[:image]
       attrs[:images] ||= [attrs[:image]]
-      attrs[:images].collect { |image| Image.instantiate(image) }
+      attrs[:images].collect { |image| Image.instantiate(image) }.select do |image|
+        image.url.present?
+      end
     end
   end # Event
 end # Eventful
