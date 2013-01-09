@@ -6,29 +6,23 @@ module Eventful
 
     class Document < Ox::Sax
       def initialize(options = {})
-        @stream = true if options[:stream]
-
         if options[:resource]
           @resource_class = options[:resource]
           @resource_name = options[:resource].to_s.demodulize.downcase.to_sym
         end
+      end
 
+      def callback(&block)
         unless resource?
           raise ArgumentError, "Option `:resource' is required when streaming."
         end
-      end
 
-      def parse(io)
-        if stream?
-          require 'fiber'
-          @parser = Fiber.new { parse!(io) }
-        else
-          parse!(io)
-        end
+        @stream = true
+        @callback = block
         self
       end
 
-      def parse!(io)
+      def parse(io)
         decoder = Decoder.new(io)
         Ox.sax_parse(self, decoder, convert_special: true)
         self
@@ -49,16 +43,7 @@ module Eventful
       end
 
       def resources
-        if stream?
-          Enumerator.new do |objects|
-            while @parser.alive?
-              object = @parser.resume
-              objects << object unless object == self
-            end
-          end
-        else
-          @resources ||= []
-        end
+        @resources ||= []
       end
 
       def nodes
@@ -104,7 +89,7 @@ module Eventful
         object = @resource_class.instantiate(node.to_hash[@resource_name])
 
         if stream?
-          Fiber.yield(object)
+          @callback.call(object)
         else
           resources << object
         end

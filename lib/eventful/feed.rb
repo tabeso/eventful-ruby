@@ -25,14 +25,12 @@ module Eventful
     #     Eventful::Feed::Request.new(:events, :full).each do |event|
     #       puts event.title
     #     end
-    def execute
+    def execute(&block)
       EventMachine.run do
         io_read, io_write = IO.pipe.collect(&:binmode)
 
         EventMachine.defer(proc {
-          Parser.stream(io_read, resource: @resource).each do |object|
-            yield(object)
-          end
+          Parser.stream(io_read, resource: @resource, &block)
         }, proc {
           io_write.close
           EventMachine.stop

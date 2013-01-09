@@ -6,16 +6,16 @@ module Eventful
   module Parser
     extend self
 
-    def open(path, options = {})
-      stream(File.open(path, 'rb'), options)
+    def open(path, options = {}, &block)
+      stream(File.open(path, 'rb'), options, &block)
     end
 
     def parse(io, options = {})
       Document.new(options).parse(io)
     end
 
-    def stream(io, options = {})
-      Document.new(options.merge(stream: true)).parse(io).resources
+    def stream(io, options = {}, &block)
+      Document.new(options).callback(&block).parse(io)
     end
   end # Parser
 end # Eventful
