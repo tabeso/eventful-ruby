@@ -2,7 +2,7 @@ module Eventful
   class Image
     include Resource
 
-    URL_PATTERN = %r{^(https?://.*evcdn\.com/images/)(thumb|small|medium)}
+    URL_PATTERN = %r{^(https?://.*evcdn\.com/images/)(thumb|small|medium|large|block)}
 
     protected
 
