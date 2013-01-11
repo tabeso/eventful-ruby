@@ -17,7 +17,7 @@ module Eventful
       end
 
       def parse(env)
-        Parser.parse(env[:body], resource: env[:request].fetch(:resource, @resource))
+        Parser.parse(env[:body], resource: env[:request].fetch(:resource, @resource), load: true)
       end
 
       def parse_response?(env)

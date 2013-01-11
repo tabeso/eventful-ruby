@@ -7,6 +7,7 @@ module Eventful
     class Document < Ox::Sax
       def initialize(options = {})
         if options[:resource]
+          @load = options[:load] || false
           @resource_class = options[:resource]
           @resource_name = options[:resource].to_s.demodulize.downcase.to_sym
         end
@@ -28,6 +29,10 @@ module Eventful
         self
       ensure
         decoder.close
+      end
+
+      def load?
+        @load
       end
 
       def stream?
@@ -86,7 +91,11 @@ module Eventful
       protected
 
       def add_resource(node)
-        object = @resource_class.instantiate(node.to_hash[@resource_name])
+        object = if load?
+          @resource_class.instantiate(node.to_hash[@resource_name])
+        else
+          node.to_hash[@resource_name]
+        end
 
         if stream?
           @callback.call(object)
