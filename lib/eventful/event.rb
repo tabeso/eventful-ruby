@@ -94,6 +94,10 @@ module Eventful
       feed(:updates, date)
     end
 
+    def self.withdrawn(date = Date.yesterday)
+        feed(:withdrawn, date)
+    end
+
     def public?
       privacy == :public
     end
@@ -119,7 +123,7 @@ module Eventful
         ends_at: attrs[:stop_time],
         all_day: attrs[:all_day] == '1',
         privacy: (PRIVACY.fetch(attrs[:privacy].to_i - 1) rescue :public),
-        free: attrs[:free].present? ? !attrs[:free].to_i.zero? : nil,
+        free: attrs[:free],
         pricing: attrs[:price],
         withdrawn: attrs[:withdrawn] == '1',
         venue_id: attrs[:venue_id],
