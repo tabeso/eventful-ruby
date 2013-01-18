@@ -21,7 +21,7 @@ module Eventful
       end
 
       def text=(value)
-        @text = value.strip.force_encoding('UTF-8')
+        @text = value.strip.encode!('UTF-8', 'UTF-8', invalid: :replace)
       end
 
       def children
@@ -59,11 +59,7 @@ module Eventful
             end
             h[node.name] << node.to_hash[node.name]
           else
-            begin
-              h[node.name] = node.to_hash[node.name]
-            rescue => e
-              binding.pry
-            end
+            h[node.name] = node.to_hash[node.name]
           end
           h
         end
