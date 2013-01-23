@@ -12,9 +12,7 @@ module Eventful
 
     def self.find(id, options = {})
       options.merge!(id: id)
-      response = get('venues/get', options)
-      venue = instantiate(response.body['venue'])
-      respond_with venue, response
+      respond_with get('venues/get', options), resource: true
     end
 
     def hidden?
