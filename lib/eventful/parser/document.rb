@@ -28,7 +28,7 @@ module Eventful
         Ox.sax_parse(self, decoder, convert_special: true)
         self
       ensure
-        decoder.close
+        decoder.try(:close)
       end
 
       def load?

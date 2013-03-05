@@ -40,7 +40,14 @@ module Eventful
         http.stream do |chunk|
           io_write << chunk
         end
+
+        http.errback do |client|
+          error = client.error || 'request failed'
+          EventMachine.stop
+        end
       end
+
+      raise error if error
     end
     alias :each :execute
 
