@@ -33,6 +33,7 @@ module Eventful
       stream = Thread.new { Excon.get(url, response_block: streamer) }
       parser = Thread.new { Parser.stream(io_read, resource: @resource, &block) }
       [stream, parser].each(&:join)
+      self
     end
     alias :each :execute
 
