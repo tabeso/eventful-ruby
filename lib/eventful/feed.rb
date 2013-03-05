@@ -1,4 +1,4 @@
-require 'em-http'
+require 'excon'
 
 module Eventful
   class Feed
@@ -26,28 +26,13 @@ module Eventful
     #       puts event.title
     #     end
     def execute(&block)
-      EventMachine.run do
-        io_read, io_write = IO.pipe.collect(&:binmode)
-
-        EventMachine.defer(proc {
-          Parser.stream(io_read, resource: @resource, &block)
-        }, proc {
-          io_write.close
-          EventMachine.stop
-        })
-
-        http = EventMachine::HttpRequest.new(url).get
-        http.stream do |chunk|
-          io_write << chunk
-        end
-
-        http.errback do |client|
-          error = client.error || 'request failed'
-          EventMachine.stop
-        end
+      io_read, io_write = IO.pipe.collect(&:binmode)
+      streamer = lambda do |chunk, remaining_bytes, total_bytes|
+        io_write << chunk
       end
-
-      raise error if error
+      stream = Thread.new { Excon.get(url, response_block: streamer) }
+      parser = Thread.new { Parser.stream(io_read, resource: @resource, &block) }
+      [stream, parser].each(&:join)
     end
     alias :each :execute
 
