@@ -21,7 +21,7 @@ Gem::Specification.new do |gem|
   gem.add_dependency 'hashie', '~> 1.2.0'
 
   # Feed streaming
-  gem.add_dependency 'excon', '~> 0.25.1'
+  gem.add_dependency 'excon', '~> 0.30.0'
   gem.add_dependency 'ox', '~> 1.8'
 
   # Basic
