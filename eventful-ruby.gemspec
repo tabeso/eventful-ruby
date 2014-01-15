@@ -15,14 +15,14 @@ Gem::Specification.new do |gem|
   gem.require_paths = ['lib']
   gem.version       = Eventful::VERSION
 
-  gem.add_dependency 'activesupport', '>= 3.1', '< 3.3'
+  gem.add_dependency 'activesupport', '>= 4.0'
   gem.add_dependency 'faraday', '~> 0.8'
   gem.add_dependency 'faraday_middleware', '~> 0.9'
-  gem.add_dependency 'hashie', '~> 1.2.0'
+  gem.add_dependency 'hashie', '>= 2.0.5'
 
   # Feed streaming
-  gem.add_dependency 'excon', '~> 0.30.0'
-  gem.add_dependency 'ox', '~> 1.8'
+  gem.add_dependency 'excon', '~> 0.31.0'
+  gem.add_dependency 'ox', '~> 2.0'
 
   # Basic
   gem.add_development_dependency 'rake'
