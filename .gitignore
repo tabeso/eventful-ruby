@@ -5,6 +5,8 @@
 .yardoc
 .DS_Store
 .rvmrc
+.ruby-version
+.ruby-gemset
 InstalledFiles
 _yardoc
 coverage
